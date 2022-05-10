@@ -2,7 +2,7 @@ import axios from 'axios';
 import './App.css';
 import { useEffect, useState } from 'react';
 const CLIENT_ID = '6279f77a0a5f4642bf344d73a24d5bf1';
-const REDIRECT_URI = "http://localhost:3000";
+const REDIRECT_URI = "https://audio-video-music-player.netlify.app/";
 const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
 const RESPONSE_TYPE = "token";
 function App() {

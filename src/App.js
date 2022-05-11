@@ -58,14 +58,25 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        {!token ?
-          <a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}>Login
-            to Spotify</a>
-          : <div><form onSubmit={searchArtists}>
-            <input type="text" onChange={e => setSearchKey(e.target.value)} />
-            <button type={"submit"}>Search</button>
-          </form>
-            {renderArtists()}<button onClick={logout}>Logout</button></div>}
+        {!token ? (
+          <a
+            href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}
+          >
+            Login to Spotify
+          </a>
+        ) : (
+          <div>
+            <form onSubmit={searchArtists}>
+              <input
+                type="text"
+                onChange={(e) => setSearchKey(e.target.value)}
+              />
+              <button type={"submit"}>Search</button>
+            </form>
+            {renderArtists()}
+            <button onClick={logout}>Logout</button>
+          </div>
+        )}
       </header>
     </div>
   );

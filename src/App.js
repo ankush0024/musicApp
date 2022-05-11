@@ -4,7 +4,7 @@ import axios from "axios";
 import "./App.css";
 import { useEffect, useState } from "react";
 // ClientID updates
-const CLIENT_ID = "321ed7c54219407cbe8970e494f50d21";
+const CLIENT_ID = window.location.hostname === "localhost"?"321ed7c54219407cbe8970e494f50d21":'6279f77a0a5f4642bf344d73a24d5bf1';
 const REDIRECT_URI =
   window.location.hostname === "localhost"
     ? "http://localhost:3000/"
@@ -67,7 +67,6 @@ function App() {
       <header className="App-header">
         {!token ? (
           <a
-            className="btn btn-outline-warning"
             href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}
           >
             Login to Spotify
@@ -76,18 +75,13 @@ function App() {
           <div>
             <form onSubmit={searchArtists}>
               <input
-                className="form-control"
                 type="text"
                 onChange={(e) => setSearchKey(e.target.value)}
               />
-              <button type={"submit"} className="btn btn-outline-success">
-                Search
-              </button>
+              <button type={"submit"}>Search</button>
             </form>
             {renderArtists()}
-            <button onClick={logout} className="btn btn-primary">
-              Logout
-            </button>
+            <button onClick={logout}>Logout</button>
           </div>
         )}
       </header>

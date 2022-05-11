@@ -67,6 +67,7 @@ function App() {
       <header className="App-header">
         {!token ? (
           <a
+            className="btn btn-outline-warning"
             href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}
           >
             Login to Spotify
@@ -75,13 +76,18 @@ function App() {
           <div>
             <form onSubmit={searchArtists}>
               <input
+                className="form-control"
                 type="text"
                 onChange={(e) => setSearchKey(e.target.value)}
               />
-              <button type={"submit"}>Search</button>
+              <button type={"submit"} className="btn btn-outline-success">
+                Search
+              </button>
             </form>
             {renderArtists()}
-            <button onClick={logout}>Logout</button>
+            <button onClick={logout} className="btn btn-primary">
+              Logout
+            </button>
           </div>
         )}
       </header>

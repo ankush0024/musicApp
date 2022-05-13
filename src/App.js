@@ -1,6 +1,8 @@
 /** @format */
 
 import axios from "axios";
+import SpotifyPlayer from 'react-spotify-web-playback';
+//import SpotifyPlayer from 'react-spotify-player';
 import "./App.css";
 import { useEffect, useState } from "react";
 // ClientID updates
@@ -11,6 +13,13 @@ const REDIRECT_URI =
     : "https://audio-video-music-player.netlify.app/";
 const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
 const RESPONSE_TYPE = "token";
+const size = {
+  width: '100%',
+  height: 300,
+};
+const view = 'list'; // or 'coverart'
+const theme = 'black'; // or 'white'
+ 
 function App() {
   const [token, setToken] = useState("");
   const [searchKey, setSearchKey] = useState("")
@@ -60,7 +69,7 @@ function App() {
       <header className="App-header">
         {!token ? (
           <a
-            href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}
+            href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=streaming%20user-read-email%20user-read-private%20user-read-playback-state%20user-modify-playback-state%20user-library-read%20user-library-modify`}
           >
             Login to Spotify
           </a>
@@ -74,6 +83,25 @@ function App() {
               <button type={"submit"}>Search</button>
             </form>
             {renderArtists()}
+            <button >Play</button>
+             <SpotifyPlayer
+  token={token} styles={{
+    activeColor: '#fff',
+    bgColor: '#333',
+    color: '#fff',
+    loaderColor: '#fff',
+    sliderColor: '#1cb954',
+    trackArtistColor: '#ccc',
+    trackNameColor: '#fff',
+  }} autoPlay='true' 
+  uris={['spotify:album:1TIUsv8qmYLpBEhvmBmyBk']}
+/> 
+{/* <SpotifyPlayer
+  uri="spotify:album:1TIUsv8qmYLpBEhvmBmyBk"
+  size={size}
+  view={view}
+  theme={theme}
+/> */}
             <button onClick={logout}>Logout</button>
           </div>
         )}

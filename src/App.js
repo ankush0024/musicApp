@@ -87,14 +87,10 @@ function App() {
                 type="text"
                 onChange={(e) => setSearchKey(e.target.value)}
               />
-              <button type={"submit"} className="btn btn-outline-success">
-                Search
-              </button>
+              <button type={"submit"}>Search</button>
             </form>
             {renderArtists()}
-            <button onClick={logout} className="btn btn-primary">
-              Logout
-            </button>
+            <button onClick={logout}>Logout</button>
           </div>
         )}
       </header>
